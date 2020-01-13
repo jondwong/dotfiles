@@ -8,27 +8,27 @@ class {{ Model }}Router {
     @request(router.post.bind(router), '/')
     static async create(req, res) {
         let body = req.body;
-        let {{ ModelInstance }} = new {{Model}}(body);
-        await {{ ModelInstance }}.save();
-        return { {{ ModelInstance }} };
+        let {{ Model.lower }} = new {{Model}}(body);
+        await {{ Model.lower }}.save();
+        return { {{ Model.lower }} };
     }
 
     @request(router.get.bind(router), '/')
     static async getAll(req, res) {
-        let {{ModelInstance}}s = await {{Model}}.find();
-        return { {{ModelInstance}}s };
+        let {{ Model.lower }}s = await {{Model}}.find();
+        return { {{ Model.lower }}s };
     }
 
     @request(router.get.bind(router), '/:id')
     static async get(req, res) {
-        let {{ModelInstance}} = await {{Model}}.findById(req.params.id);
-        return { {{ ModelInstance }} };
+        let {{ Model.lower }} = await {{Model}}.findById(req.params.id);
+        return { {{ Model.lower }} };
     }
 
     @request(router.patch.bind(router), '/:id')
     static async update(req, res) {
-        let {{ModelInstance}} = await {{Model}}.findById(req.params.id);
-        return { {{ ModelInstance }} };
+        let {{ Model.lower }} = await {{Model}}.update({_id: req.params.id}, req.body, {upsert: false});
+        return { {{ Model.lower }} };
     }
 }
 
