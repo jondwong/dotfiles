@@ -1,5 +1,5 @@
 import express from 'express';
-import {{ Model }} from '../models/{{ModelInstance}}';
+import {{ Model }} from '../models/{{Model.lower}}';
 import { request } from './route_utils';
 
 const router = express.Router();
